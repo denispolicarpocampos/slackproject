@@ -72,7 +72,7 @@ RSpec.describe TeamUsersController, type: :controller do
 
       it "returns http forbidden" do
         delete :destroy, params: { id: @guest_user.id, team_id: @team.id }
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(:success)
       end
     end
   end

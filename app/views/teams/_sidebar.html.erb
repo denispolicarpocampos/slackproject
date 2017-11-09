@@ -7,6 +7,13 @@
          <i class="material-icons" id="<%= @team.id %>">settings</i>
          </a>
          <% end %>
+
+         <% if can? :read, @team and cannot? :destroy, @team %>
+         <a class="right team_icon leave_team" href="#">
+         <i class="material-icons" id="<%= @team.id %>">settings</i>
+         </a>
+         <% end %>
+
       </div>
    </li>
    <li>
@@ -58,20 +65,20 @@
                            <input type="hidden" name="team_id" class="team_id" value="<%= @team.id %>">
                         </li>
                         <% @team.my_users.each do |user| %>
-                        <% if user != current_user %>
-                        <li class="user_<%= user.id %>">
-                           <div>
-                              <a href="#" id="<%= user.id %>" class="open_user">
-                                <span id="<%= user.id %>"><%= user.name %></span>
-                              </a>
-                              <% if can? :destroy, @team %>
-                              <a class="right remove_user" id="<%= user.id %>" href="#" style="color: #ccc">
-                              <i class="material-icons" id="<%= user.id %>">settings</i>
-                              </a>
-                              <% end %>
-                           </div>
-                        </li>
-                        <% end %>
+                          <% if user != current_user %>
+                            <li class="user_<%= user.id %>">
+                               <div>
+                                  <a href="#" id="<%= user.id %>" class="open_user">
+                                    <span id="<%= user.id %>"><%= user.name %></span>
+                                  </a>
+                                  <% if can? :destroy, @team %>
+                                  <a class="right remove_user" id="<%= user.id %>" href="#" style="color: #ccc">
+                                  <i class="material-icons" id="<%= user.id %>">settings</i>
+                                  </a>
+                                  <% end %>
+                               </div>
+                            </li>
+                          <% end %>
                         <% end %>
                         <% if can? :destroy, @team %>
                         <li>
