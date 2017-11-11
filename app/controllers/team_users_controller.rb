@@ -8,7 +8,7 @@ class TeamUsersController < ApplicationController
     if @team_user.save
       redirect_to "/#{@team_user.team.slug}", notice: "Welcome!"
     else
-      redirect_to root_patch, alert: "An error ocurred!"
+      redirect_to root_path, alert: "An error ocurred!"
     end
   end
 
