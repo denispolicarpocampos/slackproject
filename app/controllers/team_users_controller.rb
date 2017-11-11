@@ -5,12 +5,10 @@ class TeamUsersController < ApplicationController
     @team_user = TeamUser.new(team_user_params)
     authorize! :create, @team_user
 
-    respond_to do |format|
-      if @team_user.save
-        format.json { render :show, status: :created }
-      else
-        format.json { render json: @team_user.errors, status: :unprocessable_entity }
-      end
+    if @team_user.save
+      redirect_to "/#{@team_user.team.slug}", notice: "Welcome!"
+    else
+      redirect_to root_patch, alert: "An error ocurred!"
     end
   end
 

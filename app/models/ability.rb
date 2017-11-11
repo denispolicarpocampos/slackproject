@@ -20,7 +20,7 @@ class Ability
       end
 
       can [:create], TeamUser do |t|
-        t.team.user_id == user.id
+        t.user_id == user.id
       end
 
       can [:destroy], TeamUser do |t|
